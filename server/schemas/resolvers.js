@@ -47,11 +47,11 @@ const resolvers = {
 
       return { token, user };
     },
-    addArticle: async (parent, { articleText }, context) => {
+    addArticle: async (parent, { content }, context) => {
       if (context.user) {
         const article = await Article.create({
-          articleText,
-          articleAuthor: context.user.author,
+          content,
+          author: context.user.author,
         });
 
         await User.findOneAndUpdate(
@@ -84,7 +84,7 @@ const resolvers = {
       if (context.user) {
         const article = await Article.findOneAndDelete({
           _id: articleId,
-          articleAuthor: context.user.author,
+          author: context.user.author,
         });
 
         await User.findOneAndUpdate(

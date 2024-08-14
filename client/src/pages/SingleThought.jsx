@@ -24,7 +24,7 @@ const SingleArticle = () => {
   return (
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
-        {article.articleAuthor} <br />
+        {article.author} <br />
         <span style={{ fontSize: '1rem' }}>
           had this article on {article.publishedAt}
         </span>
@@ -39,7 +39,7 @@ const SingleArticle = () => {
             lineHeight: '1.5',
           }}
         >
-          {article.articleText}
+          {article.content}
         </blockquote>
       </div>
 

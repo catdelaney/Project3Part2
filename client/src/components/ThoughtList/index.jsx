@@ -20,9 +20,9 @@ const ArticleList = ({
               {showUsername ? (
                 <Link
                   className="text-light"
-                  to={`/profiles/${article.articleAuthor}`}
+                  to={`/profiles/${article.author}`}
                 >
-                  {article.articleAuthor} <br />
+                  {article.author} <br />
                   <span style={{ fontSize: '1rem' }}>
                     had this article on {article.publishedAt}
                   </span>
@@ -36,7 +36,7 @@ const ArticleList = ({
               )}
             </h4>
             <div className="card-body bg-light p-2">
-              <p>{article.articleText}</p>
+              <p>{article.content}</p>
             </div>
             <Link
               className="btn btn-primary btn-block btn-squared"

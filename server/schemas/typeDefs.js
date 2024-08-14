@@ -9,8 +9,8 @@ const typeDefs = `
 
   type Article {
     _id: ID
-    articleText: String
-    articleAuthor: String
+    content: String
+    author: String
     publishedAt: String
     comments: [Comment]!
   }
@@ -38,7 +38,7 @@ const typeDefs = `
   type Mutation {
     addUser(author: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addArticle(articleText: String!): Article
+    addArticle(content: String!): Article
     addComment(articleId: ID!, commentText: String!): Article
     removeArticle(articleId: ID!): Article
     removeComment(articleId: ID!, commentId: ID!): Article

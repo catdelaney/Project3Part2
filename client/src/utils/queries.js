@@ -8,7 +8,7 @@ export const QUERY_USER = gql`
       email
       articles {
         _id
-        articleText
+        content
         publishedAt
       }
     }
@@ -19,8 +19,8 @@ export const QUERY_THOUGHTS = gql`
   query getArticles {
     articles {
       _id
-      articleText
-      articleAuthor
+      content
+      author
       publishedAt
     }
   }
@@ -30,8 +30,8 @@ export const QUERY_SINGLE_THOUGHT = gql`
   query getSingleArticle($articleId: ID!) {
     article(articleId: $articleId) {
       _id
-      articleText
-      articleAuthor
+      content
+      author
       publishedAt
       comments {
         _id
@@ -51,8 +51,8 @@ export const QUERY_ME = gql`
       email
       articles {
         _id
-        articleText
-        articleAuthor
+        content
+        author
         publishedAt
       }
     }

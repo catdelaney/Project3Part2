@@ -8,7 +8,7 @@ import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const ArticleForm = () => {
-  const [articleText, setArticleText] = useState('');
+  const [content, setArticleText] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
 
@@ -27,9 +27,9 @@ const ArticleForm = () => {
     try {
       const { data } = await addArticle({
         variables: {
-          articleText,
+          content,
           // Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's author 
-          articleAuthor: Auth.getProfile().authenticatedPerson.author
+          author: Auth.getProfile().authenticatedPerson.author
         },
       });
 
@@ -42,7 +42,7 @@ const ArticleForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    if (name === 'articleText' && value.length <= 280) {
+    if (name === 'content' && value.length <= 280) {
       setArticleText(value);
       setCharacterCount(value.length);
     }
@@ -67,9 +67,9 @@ const ArticleForm = () => {
           >
             <div className="col-12 col-lg-9">
               <textarea
-                name="articleText"
+                name="content"
                 placeholder="Here's a new article..."
-                value={articleText}
+                value={content}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
