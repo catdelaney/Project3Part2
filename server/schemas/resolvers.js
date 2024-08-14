@@ -6,12 +6,12 @@ const resolvers = {
     users: async () => {
       return User.find().populate('thoughts');
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+    user: async (parent, { author }) => {
+      return User.findOne({ author }).populate('thoughts');
     },
-    thoughts: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+    thoughts: async (parent, { author }) => {
+      const params = author ? { author } : {};
+      return Thought.find(params).sort({ publishedAt: -1 });
     },
     thought: async (parent, { thoughtId }) => {
       return Thought.findOne({ _id: thoughtId });
@@ -25,8 +25,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { author, email, password }) => {
+      const user = await User.create({ author, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -51,7 +51,7 @@ const resolvers = {
       if (context.user) {
         const thought = await Thought.create({
           thoughtText,
-          thoughtAuthor: context.user.username,
+          thoughtAuthor: context.user.author,
         });
 
         await User.findOneAndUpdate(
@@ -69,7 +69,7 @@ const resolvers = {
           { _id: thoughtId },
           {
             $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
+              comments: { commentText, commentAuthor: context.user.author },
             },
           },
           {
@@ -84,7 +84,7 @@ const resolvers = {
       if (context.user) {
         const thought = await Thought.findOneAndDelete({
           _id: thoughtId,
-          thoughtAuthor: context.user.username,
+          thoughtAuthor: context.user.author,
         });
 
         await User.findOneAndUpdate(
@@ -104,7 +104,7 @@ const resolvers = {
             $pull: {
               comments: {
                 _id: commentId,
-                commentAuthor: context.user.username,
+                commentAuthor: context.user.author,
               },
             },
           },

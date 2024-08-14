@@ -24,13 +24,13 @@ const ThoughtList = ({
                 >
                   {thought.thoughtAuthor} <br />
                   <span style={{ fontSize: '1rem' }}>
-                    had this thought on {thought.createdAt}
+                    had this thought on {thought.publishedAt}
                   </span>
                 </Link>
               ) : (
                 <>
                   <span style={{ fontSize: '1rem' }}>
-                    You had this thought on {thought.createdAt}
+                    You had this thought on {thought.publishedAt}
                   </span>
                 </>
               )}

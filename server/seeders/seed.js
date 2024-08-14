@@ -16,7 +16,7 @@ db.once('open', async () => {
     for (let i = 0; i < thoughtSeeds.length; i++) {
       const { _id, thoughtAuthor } = await Thought.create(thoughtSeeds[i]);
       const user = await User.findOneAndUpdate(
-        { username: thoughtAuthor },
+        { author: thoughtAuthor },
         {
           $addToSet: {
             thoughts: _id,
@@ -28,7 +28,7 @@ db.once('open', async () => {
       const { _id, articleAuthor } = await Article.create(articleSeeds[i]);
       const user = await User.findOneAndUpdate(
           {
-              username: articleAuthor
+              author: articleAuthor
           },
           {
               $addToSet: {

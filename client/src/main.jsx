@@ -29,7 +29,7 @@ const router = createBrowserRouter([
         path: '/me',
         element: <Profile />
       }, {
-        path: '/profiles/:username',
+        path: '/profiles/:author',
         element: <Profile />
       }, {
         path: '/thoughts/:thoughtId',

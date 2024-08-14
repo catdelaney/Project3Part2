@@ -20,8 +20,8 @@ const CommentForm = ({ thoughtId }) => {
         variables: {
           thoughtId,
           commentText,
-          // Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's username 
-          commentAuthor: Auth.getProfile().authenticatedPerson.username
+          // Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's author 
+          commentAuthor: Auth.getProfile().authenticatedPerson.author
         },
       });
 

@@ -16,7 +16,7 @@ const subscriptionSchema = new Schema(
       type: Date,
       default: Date.now + 1,
     },
-    username: {
+    author: {
       type: String,
       required: true,
     },

@@ -6,19 +6,19 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        username
+        author
       }
     }
   }
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  mutation addUser($author: String!, $email: String!, $password: String!) {
+    addUser(author: $author, email: $email, password: $password) {
       token
       user {
         _id
-        username
+        author
       }
     }
   }
@@ -30,7 +30,7 @@ export const ADD_THOUGHT = gql`
       _id
       thoughtText
       thoughtAuthor
-      createdAt
+      publishedAt
       comments {
         _id
         commentText
@@ -45,11 +45,11 @@ export const ADD_COMMENT = gql`
       _id
       thoughtText
       thoughtAuthor
-      createdAt
+      publishedAt
       comments {
         _id
         commentText
-        createdAt
+        publishedAt
       }
     }
   }

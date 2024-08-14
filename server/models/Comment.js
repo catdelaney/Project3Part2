@@ -12,11 +12,11 @@ const commentSchema = new Schema({
     required: true,
     maxlength: 280,
   },
-  username: {
+  author: {
     type: String,
     required: true,
   },
-  createdAt: {
+  publishedAt: {
     type: Date,
     default: Date.now,
   },

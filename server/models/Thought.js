@@ -14,7 +14,7 @@ const thoughtSchema = new Schema({
     required: true,
     trim: true,
   },
-  createdAt: {
+  publishedAt: {
     type: Date,
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
@@ -31,7 +31,7 @@ const thoughtSchema = new Schema({
         type: String,
         required: true,
       },
-      createdAt: {
+      publishedAt: {
         type: Date,
         default: Date.now,
         get: (timestamp) => dateFormat(timestamp),

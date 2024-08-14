@@ -5,23 +5,23 @@ const { Schema, model } = require("mongoose");
 // Article schema
 const articleSchema = new Schema(
   {
-    articleText: {
+    content: {
       type: String,
       required: true,
       maxlength: 280,
       minlength: 1,
     },
-    articleTitle: {
+    title: {
         type: String,
         required: true,
         maxlength: 150,
         minlength: 1,
     },
-    createdAt: {
+    publishedAt: {
       type: Date,
       default: Date.now,
     },
-    username: {
+    author: {
       type: String,
       required: true,
     },
