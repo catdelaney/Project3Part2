@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
-const ThoughtList = ({
+const ArticleList = ({
   thoughts,
   title,
   showTitle = true,
   showUsername = true,
 }) => {
   if (!thoughts.length) {
-    return <h3>No Thoughts Yet</h3>;
+    return <h3>No Articles Yet</h3>;
   }
 
   return (
@@ -50,4 +50,4 @@ const ThoughtList = ({
   );
 };
 
-export default ThoughtList;
+export default ArticleList;

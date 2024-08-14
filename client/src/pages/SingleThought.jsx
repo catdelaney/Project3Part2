@@ -7,7 +7,7 @@ import CommentForm from '../components/CommentForm';
 
 import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
 
-const SingleThought = () => {
+const SingleArticle = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { thoughtId } = useParams();
 
@@ -53,4 +53,4 @@ const SingleThought = () => {
   );
 };
 
-export default SingleThought;
+export default SingleArticle;

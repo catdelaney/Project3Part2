@@ -1,4 +1,4 @@
-const { User, Thought } = require('../models');
+const { User, Article } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 
 const resolvers = {
@@ -11,10 +11,10 @@ const resolvers = {
     },
     thoughts: async (parent, { author }) => {
       const params = author ? { author } : {};
-      return Thought.find(params).sort({ publishedAt: -1 });
+      return Article.find(params).sort({ publishedAt: -1 });
     },
     thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+      return Article.findOne({ _id: thoughtId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -47,9 +47,9 @@ const resolvers = {
 
       return { token, user };
     },
-    addThought: async (parent, { thoughtText }, context) => {
+    addArticle: async (parent, { thoughtText }, context) => {
       if (context.user) {
-        const thought = await Thought.create({
+        const thought = await Article.create({
           thoughtText,
           thoughtAuthor: context.user.author,
         });
@@ -65,7 +65,7 @@ const resolvers = {
     },
     addComment: async (parent, { thoughtId, commentText }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
+        return Article.findOneAndUpdate(
           { _id: thoughtId },
           {
             $addToSet: {
@@ -80,9 +80,9 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeThought: async (parent, { thoughtId }, context) => {
+    removeArticle: async (parent, { thoughtId }, context) => {
       if (context.user) {
-        const thought = await Thought.findOneAndDelete({
+        const thought = await Article.findOneAndDelete({
           _id: thoughtId,
           thoughtAuthor: context.user.author,
         });
@@ -98,7 +98,7 @@ const resolvers = {
     },
     removeComment: async (parent, { thoughtId, commentId }, context) => {
       if (context.user) {
-        return Thought.findOneAndUpdate(
+        return Article.findOneAndUpdate(
           { _id: thoughtId },
           {
             $pull: {
