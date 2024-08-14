@@ -12,6 +12,14 @@ const typeDefs = `
     content: String
     author: String
     publishedAt: String
+    comments: [Comment]!
+  }
+
+  type Comment {
+    _id: ID
+    commentText: String
+    commentAuthor: String
+    publishedAt: String
   }
 
   type Auth {
@@ -31,7 +39,9 @@ const typeDefs = `
     addUser(author: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     addArticle(content: String!): Article
+    addComment(articleId: ID!, commentText: String!): Article
     removeArticle(articleId: ID!): Article
+    removeComment(articleId: ID!, commentId: ID!): Article
   }
 `;
 

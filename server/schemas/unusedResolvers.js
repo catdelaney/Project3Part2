@@ -63,6 +63,23 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
+    addComment: async (parent, { articleId, commentText }, context) => {
+      if (context.user) {
+        return Article.findOneAndUpdate(
+          { _id: articleId },
+          {
+            $addToSet: {
+              comments: { commentText, commentAuthor: context.user.author },
+            },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw AuthenticationError;
+    },
     removeArticle: async (parent, { articleId }, context) => {
       if (context.user) {
         const article = await Article.findOneAndDelete({
@@ -76,6 +93,23 @@ const resolvers = {
         );
 
         return article;
+      }
+      throw AuthenticationError;
+    },
+    removeComment: async (parent, { articleId, commentId }, context) => {
+      if (context.user) {
+        return Article.findOneAndUpdate(
+          { _id: articleId },
+          {
+            $pull: {
+              comments: {
+                _id: commentId,
+                commentAuthor: context.user.author,
+              },
+            },
+          },
+          { new: true }
+        );
       }
       throw AuthenticationError;
     },
