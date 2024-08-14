@@ -7,7 +7,7 @@ import { QUERY_THOUGHTS } from '../utils/queries';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_THOUGHTS);
-  const thoughts = data?.thoughts || [];
+  const articles = data?.articles || [];
 
   return (
     <main>
@@ -23,7 +23,7 @@ const Home = () => {
             <div>Loading...</div>
           ) : (
             <ArticleList
-              thoughts={thoughts}
+              articles={articles}
               title="Some Feed for Article(s)..."
             />
           )}

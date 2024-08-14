@@ -4,21 +4,21 @@ const { signToken, AuthenticationError } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('articles');
     },
     user: async (parent, { author }) => {
-      return User.findOne({ author }).populate('thoughts');
+      return User.findOne({ author }).populate('articles');
     },
-    thoughts: async (parent, { author }) => {
+    articles: async (parent, { author }) => {
       const params = author ? { author } : {};
       return Article.find(params).sort({ publishedAt: -1 });
     },
-    thought: async (parent, { thoughtId }) => {
-      return Article.findOne({ _id: thoughtId });
+    article: async (parent, { articleId }) => {
+      return Article.findOne({ _id: articleId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('articles');
       }
       throw AuthenticationError;
     },
@@ -47,26 +47,26 @@ const resolvers = {
 
       return { token, user };
     },
-    addArticle: async (parent, { thoughtText }, context) => {
+    addArticle: async (parent, { articleText }, context) => {
       if (context.user) {
-        const thought = await Article.create({
-          thoughtText,
-          thoughtAuthor: context.user.author,
+        const article = await Article.create({
+          articleText,
+          articleAuthor: context.user.author,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
+          { $addToSet: { articles: article._id } }
         );
 
-        return thought;
+        return article;
       }
       throw AuthenticationError;
     },
-    addComment: async (parent, { thoughtId, commentText }, context) => {
+    addComment: async (parent, { articleId, commentText }, context) => {
       if (context.user) {
         return Article.findOneAndUpdate(
-          { _id: thoughtId },
+          { _id: articleId },
           {
             $addToSet: {
               comments: { commentText, commentAuthor: context.user.author },
@@ -80,26 +80,26 @@ const resolvers = {
       }
       throw AuthenticationError;
     },
-    removeArticle: async (parent, { thoughtId }, context) => {
+    removeArticle: async (parent, { articleId }, context) => {
       if (context.user) {
-        const thought = await Article.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.author,
+        const article = await Article.findOneAndDelete({
+          _id: articleId,
+          articleAuthor: context.user.author,
         });
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
+          { $pull: { articles: article._id } }
         );
 
-        return thought;
+        return article;
       }
       throw AuthenticationError;
     },
-    removeComment: async (parent, { thoughtId, commentId }, context) => {
+    removeComment: async (parent, { articleId, commentId }, context) => {
       if (context.user) {
         return Article.findOneAndUpdate(
-          { _id: thoughtId },
+          { _id: articleId },
           {
             $pull: {
               comments: {

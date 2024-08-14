@@ -32,7 +32,7 @@ const router = createBrowserRouter([
         path: '/profiles/:author',
         element: <Profile />
       }, {
-        path: '/thoughts/:thoughtId',
+        path: '/articles/:articleId',
         element: <SingleArticle />
       }
     ]

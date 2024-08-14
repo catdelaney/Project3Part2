@@ -46,8 +46,8 @@ const Profile = () => {
 
         <div className="col-12 col-md-10 mb-5">
           <ArticleList
-            thoughts={user.thoughts}
-            title={`${user.author}'s thoughts...`}
+            articles={user.articles}
+            title={`${user.author}'s articles...`}
             showTitle={false}
             showUsername={false}
           />
