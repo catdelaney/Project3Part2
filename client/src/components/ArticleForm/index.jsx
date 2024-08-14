@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_THOUGHTS, QUERY_ME } from '../../utils/queries';
+import { ADD_ARTICLE } from '../../utils/mutations';
+import { QUERY_ARTICLES, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
@@ -13,9 +13,9 @@ const ArticleForm = () => {
   const [characterCount, setCharacterCount] = useState(0);
 
   const [addArticle, { error }] = useMutation
-  (ADD_THOUGHT, {
+  (ADD_ARTICLE, {
     refetchQueries: [
-      QUERY_THOUGHTS,
+      QUERY_ARTICLES,
       'getArticles',
       QUERY_ME,
       'me'

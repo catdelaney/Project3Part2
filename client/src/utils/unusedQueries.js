@@ -33,6 +33,12 @@ export const QUERY_SINGLE_ARTICLE = gql`
       content
       author
       publishedAt
+      comments {
+        _id
+        commentText
+        commentAuthor
+        publishedAt
+      }
     }
   }
 `;

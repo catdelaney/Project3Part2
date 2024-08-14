@@ -31,6 +31,26 @@ export const ADD_ARTICLE = gql`
       content
       author
       publishedAt
+      comments {
+        _id
+        commentText
+      }
+    }
+  }
+`;
+
+export const ADD_COMMENT = gql`
+  mutation addComment($articleId: ID!, $commentText: String!) {
+    addComment(articleId: $articleId, commentText: $commentText) {
+      _id
+      content
+      author
+      publishedAt
+      comments {
+        _id
+        commentText
+        publishedAt
+      }
     }
   }
 `;

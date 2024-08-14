@@ -3,10 +3,10 @@ import { useQuery } from '@apollo/client';
 import ArticleList from '../components/ArticleList';
 import ArticleForm from '../components/ArticleForm';
 
-import { QUERY_THOUGHTS } from '../utils/queries';
+import { QUERY_ARTICLES } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_THOUGHTS);
+  const { loading, data } = useQuery(QUERY_ARTICLES);
   const articles = data?.articles || [];
 
   return (
