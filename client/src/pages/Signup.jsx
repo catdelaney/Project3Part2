@@ -56,7 +56,7 @@ const Signup = () => {
                   placeholder="Your author"
                   name="author"
                   type="text"
-                  value={formState.name}
+                  value={formState.author}
                   onChange={handleChange}
                 />
                 <input

@@ -8,8 +8,8 @@ const resolvers = {
     users: async () => {
       return await User.find({});
     },
-    user: async (parent, { username }) => {
-      return await User.findOne({ username });
+    user: async (parent, { author }) => {
+      return await User.findOne({ author });
     },
 
     articles: async (parent, { articleTitle }) => {
@@ -52,8 +52,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { author, email, password }) => {
+      const user = await User.create({ author, email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -74,7 +74,7 @@ const resolvers = {
 
       return { token, user };
     },
-    addArticle: async (parent, { title, author, publishedAt, content }) => {
+    addArticle: async (parent, { title, content, author, publishedAt }) => {
       const newArticle = new Article({ 
         title,
         author,
