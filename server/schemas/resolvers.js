@@ -13,7 +13,7 @@ const resolvers = {
     },
 
     fetchArticles: async () => {
-      const articles = await Article.find();
+      const articles = await Article.find().limit(25);
       if (articles.length === 0) {
         try {
           const response = await fetch(`https://newsapi.org/v2/everything?q=business&apiKey=3713575862d34444afaac73100b88980`);

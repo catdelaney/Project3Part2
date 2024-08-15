@@ -12,9 +12,7 @@ const Home = () => {
       <div className="flex-row justify-center">
         <div
           className="col-12 col-md-10 mb-3 p-3"
-          style={{ border: '1px dotted #1a1a1a' }}
         >
-          <ArticleForm />
         </div>
         <div className="col-12 col-md-8 mb-3">
           {loading ? (
@@ -22,7 +20,7 @@ const Home = () => {
           ) : (
             <ArticleList
               articles={articles}
-              title="Some Feed for Article(s)..."
+              title="WorldWideNews, Your News on the WorldWideWeb"
             />
           )}
         </div>
