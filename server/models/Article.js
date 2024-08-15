@@ -7,9 +7,9 @@ const articleSchema = new Schema(
   {
     content: {
       type: String,
-      required: true,
+      required: false,
       maxlength: 280,
-      minlength: 1,
+      minlength: 0,
     },
     title: {
         type: String,
@@ -23,7 +23,7 @@ const articleSchema = new Schema(
     },
     author: {
       type: String,
-      required: true,
+      required: false,
     },
     // comments: [commentSchema],
   },

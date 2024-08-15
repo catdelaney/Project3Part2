@@ -28,6 +28,7 @@ export const ADD_ARTICLE = gql`
   mutation addArticle($content: String!) {
     addArticle(content: $content) {
       _id
+      title
       content
       author
       publishedAt

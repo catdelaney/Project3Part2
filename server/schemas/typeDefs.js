@@ -9,7 +9,8 @@ const typeDefs = `
 
   type Article {
     _id: ID
-    content: String
+    title: String!
+    content: String!
     author: String
     publishedAt: String
   }
