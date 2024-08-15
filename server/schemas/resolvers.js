@@ -12,8 +12,8 @@ const resolvers = {
       return await User.findOne({ author });
     },
 
-    articles: async (parent, { articleTitle }) => {
-      const articles = await Article.find({ title: articleTitle });
+    fetchArticles: async () => {
+      const articles = await Article.find();
       if (articles.length === 0) {
         try {
           const response = await fetch(`https://newsapi.org/v2/everything?q=business&apiKey=3713575862d34444afaac73100b88980`);
@@ -24,12 +24,16 @@ const resolvers = {
           const { articles: apiArticles } = await response.json();
           if (apiArticles.length > 0) {
             const fetchedArticles = await Promise.all(apiArticles.map(async (apiArticle) => {
-            return await Article.create({
+            const newArticle = new Article({
               title: apiArticle.title,
               author: apiArticle.author,
               publishedAt: apiArticle.publishedAt,
               content: apiArticle.content || '',
             });
+            
+            const savedArticle = await newArticle.save();
+            console.log('Article saved:', savedArticle);
+            return savedArticle;
           }));
           return fetchedArticles;
           } else {

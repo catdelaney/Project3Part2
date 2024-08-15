@@ -17,7 +17,7 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_ARTICLES = gql`
-  query Query {
+  query fetchArticles {
     fetchArticles {
       _id
       title

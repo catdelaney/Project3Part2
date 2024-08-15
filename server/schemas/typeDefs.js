@@ -23,7 +23,7 @@ const typeDefs = `
   type Query {
     users: [User]
     user(author: String!): User
-    articles(author: String): [Article]
+    fetchArticles: [Article]
     article(articleId: ID!): Article
     me: User
   }
