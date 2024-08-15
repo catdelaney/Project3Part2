@@ -15,13 +15,13 @@ const ArticleList = ({ articles, title, showTitle = true, showUsername = true })
               <Link className="text-light" to={`/profiles/${article.author}`}>
                 {article.author} <br />
                 <span style={{ fontSize: '1rem' }}>
-                  had this article on {article.publishedAt}
+                {article.publishedAt}
                 </span>
               </Link>
             ) : (
               <>
                 <span style={{ fontSize: '1rem' }}>
-                  You had this article on {article.publishedAt}
+                {article.publishedAt}
                 </span>
               </>
             )}
@@ -30,7 +30,6 @@ const ArticleList = ({ articles, title, showTitle = true, showUsername = true })
             <p>{article.content}</p>
           </div>
           <Link className="btn btn-primary btn-block btn-squared" to={`/articles/${article._id}`}>
-            Join the discussion on this article.
           </Link>
         </div>
       ))}
