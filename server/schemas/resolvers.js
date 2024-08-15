@@ -16,7 +16,7 @@ const resolvers = {
       const articles = await Article.find({ title: articleTitle });
       if (articles.length === 0) {
         try {
-          const response = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=3713575862d34444afaac73100b88980`);
+          const response = await fetch(`https://newsapi.org/v2/everything?q=business&apiKey=3713575862d34444afaac73100b88980`);
           if (!response.ok) {
             throw new Error('Failed to fetch articles');
           }

@@ -8,13 +8,13 @@ const articleSchema = new Schema(
     content: {
       type: String,
       required: false,
-      maxlength: 280,
+      maxlength: 10000,
       minlength: 0,
     },
     title: {
         type: String,
         required: true,
-        maxlength: 150,
+        maxlength: 1000,
         minlength: 1,
     },
     publishedAt: {
