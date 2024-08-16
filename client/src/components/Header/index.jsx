@@ -15,9 +15,9 @@ const Header = ({ onDateChange }) => { // Receive the callback as a prop
     Auth.logout();
   };
 
-  const toggleCalendar = () => {
-    setIsCalendarOpen(!isCalendarOpen);
-  };
+  // const toggleCalendar = () => {
+  //   setIsCalendarOpen(!isCalendarOpen);
+  // };
 
   const handleDateChange = (date) => {
     setStartDate(date);
@@ -54,16 +54,16 @@ const Header = ({ onDateChange }) => { // Receive the callback as a prop
               <Link to="/" className="btn btn-lg btn-light m-2">
                 Home
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={toggleCalendar}>
+              {/* <button className="btn btn-lg btn-light m-2" onClick={toggleCalendar}>
                 Search by Date
               </button>
               {isCalendarOpen && (
                 <DatePicker
                   selected={startDate}
                   onChange={handleDateChange} // Handle date change
-                  inline
-                />
-              )}
+                  inline */}
+                {/* /> */}
+              {/* )} */}
             </>
           )}
         </div>
