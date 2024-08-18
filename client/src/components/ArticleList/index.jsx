@@ -12,10 +12,15 @@ const ArticleList = ({ articles, title, showTitle = true, showUsername = true })
         <div key={article._id} className="card mb-3">
           <h5 className="card-header bg-primary text-light p-2 m-0">
             {showUsername ? (
-              <Link className="text-light" to={`/profiles/${article.author}`}>
-                Title: {article.title}
-                <br/>
-                Author: {article.author} <br />
+              <Link 
+              className="text-light" 
+              href={article.url} 
+              target ='_blank' 
+              rel='noopener noreffer'
+              >
+              Title: {article.title}
+              <br />
+              Author: {article.author} <br />
                 <span style={{ fontSize: '1rem' }}>
               </span>
               </Link>
@@ -29,7 +34,12 @@ const ArticleList = ({ articles, title, showTitle = true, showUsername = true })
           <div className="card-body bg-light p-2">
             <p>{article.content}</p>
           </div>
-          <Link className="btn btn-primary btn-block btn-squared" to={`/articles/${article._id}`}>
+          <Link
+            className="btn btn-primary btn-block btn-squared"
+            href={article.externalUrl}
+            target="_blank"
+            rel="noopener noreferrer">
+            Read Full Article
           </Link>
         </div>
       ))}

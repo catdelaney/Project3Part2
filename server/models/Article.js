@@ -25,7 +25,10 @@ const articleSchema = new Schema(
       type: String,
       required: false,
     },
-    // comments: [commentSchema],
+    url: {
+      type: String,
+      required: false,
+    },
   },
   {
     toJSON: {
@@ -35,13 +38,6 @@ const articleSchema = new Schema(
   }
 );
 
-// Increases comment count in Article model object when comments are added to an article
-// articleSchema.virtual("commentCount").get(function () {
-//   return this.comments.length;
-// });
-
-// Creates Article model with articleSchema
 const Article = model("article", articleSchema);
 
-// Exports
 module.exports = Article;

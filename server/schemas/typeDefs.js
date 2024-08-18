@@ -13,6 +13,7 @@ const typeDefs = `
     content: String!
     author: String
     publishedAt: String
+    url: String
   }
 
   type Auth {

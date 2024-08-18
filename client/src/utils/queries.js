@@ -11,6 +11,7 @@ export const QUERY_USER = gql`
         title
         content
         publishedAt
+        url
       }
     }
   }
@@ -24,6 +25,7 @@ export const QUERY_ARTICLES = gql`
       content
       author
       publishedAt
+      url
     }
   }
 `;
@@ -36,6 +38,7 @@ export const QUERY_SINGLE_ARTICLE = gql`
       content
       author
       publishedAt
+      url
     }
   }
 `;
@@ -52,6 +55,7 @@ export const QUERY_ME = gql`
         content
         author
         publishedAt
+        url
       }
     }
   }

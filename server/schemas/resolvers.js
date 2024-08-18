@@ -29,6 +29,7 @@ const resolvers = {
               author: apiArticle.author,
               publishedAt: apiArticle.publishedAt,
               content: apiArticle.content || '',
+              url: apiArticle.url,
             });
             
             const savedArticle = await newArticle.save();
