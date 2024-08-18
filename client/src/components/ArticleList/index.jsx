@@ -10,22 +10,22 @@ const ArticleList = ({ articles, title, showTitle = true, showUsername = true })
       {showTitle && <h3>{title}</h3>}
       {articles.map(article => (
         <div key={article._id} className="card mb-3">
-          <h4 className="card-header bg-primary text-light p-2 m-0">
+          <h5 className="card-header bg-primary text-light p-2 m-0">
             {showUsername ? (
               <Link className="text-light" to={`/profiles/${article.author}`}>
-                {article.author} <br />
+                Title: {article.title}
+                <br/>
+                Author: {article.author} <br />
                 <span style={{ fontSize: '1rem' }}>
-                {article.publishedAt}
-                </span>
+              </span>
               </Link>
             ) : (
               <>
                 <span style={{ fontSize: '1rem' }}>
-                {article.publishedAt}
                 </span>
               </>
             )}
-          </h4>
+          </h5>
           <div className="card-body bg-light p-2">
             <p>{article.content}</p>
           </div>
