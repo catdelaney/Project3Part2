@@ -8,7 +8,8 @@ const resolvers = {
     users: async () => {
       return await User.find({});
     },
-    user: async (parent, { author }) => {
+    user: async (parent, args) => {
+      const { author } = args;
       return await User.findOne({ author }).populate('favorites');
     },
 
@@ -33,7 +34,6 @@ const resolvers = {
               });
               
               const savedArticle = await newArticle.save();
-              console.log('Article saved:', savedArticle);
               return savedArticle;
             }));
             return fetchedArticles;
@@ -41,13 +41,15 @@ const resolvers = {
             throw new Error('No articles found');
           }
         } catch (error) {
-          console.error('Error fetching articles:', error);
           throw new Error('Failed to fetch articles');
         }
       }
       return articles;
     },
-
+    article: async (parent, args) => {
+      const { articleId } = args;
+      return await Article.findById(articleId);
+    },
     me: async (parent, args, context) => {
       if (context.user) {
         return await User.findOne({ _id: context.user._id }).populate('favorites');
@@ -57,12 +59,14 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { author, email, password }) => {
+    addUser: async (parent, args) => {
+      const { author, email, password } = args;
       const user = await User.create({ author, email, password });
       const token = signToken(user);
       return { token, user };
     },
-    login: async (parent, { email, password }) => {
+    login: async (parent, args) => {
+      const { email, password } = args;
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -79,37 +83,38 @@ const resolvers = {
 
       return { token, user };
     },
-    addArticle: async (parent, { title, content, author, publishedAt, url }) => {
-      const newArticle = new Article({ 
-        title,
-        author,
-        publishedAt,
-        content: content || '',
-        url: url || ''
-      });
-      return await newArticle.save();
+    addArticle: async (parent, args, context) => {
+      if (context.user) {
+        const { title, content, author, publishedAt, url } = args;
+        const newArticle = new Article({ 
+          title,
+          author,
+          publishedAt,
+          content: content || '',
+          url: url || ''
+        });
+        return await newArticle.save();
+        }
+      throw new AuthenticationError('You need to be logged in!');
     },
-    favoriteArticle: async (parent, { articleId }, context) => {
-      if (!context.user) {
-        throw new AuthenticationError('You need to be logged in');
+    favoriteArticle: async (parent, args, context) => {
+      if (context.user) {
+        const { articleId } = args;
+        const user = await User.findById(context.user._id);
+        if (!user) {
+          throw new Error('User not found');
+        }
+        const article = await Article.findById(articleId);
+        if (!article) {
+          throw new Error('Article not found');
+        }
+        if (!user.favorites.includes(articleId)) {
+          user.favorites.push(articleId);
+          await user.save();
+        }
+        return user.populate('favorites');
       }
-
-      const user = await User.findByIdAndUpdate(
-        context.user._id,
-        { $addToSet: { favorites: articleId } },
-        { new: true }
-      ).populate('favorites'); 
-
-      if (!user) {
-        throw new Error('User not found');
-      }
-
-      return user;
-    },
-  },
-  User: {
-    favorites: async (user) => {
-      return await Article.find({ _id: { $in: user.favorites } });
+      throw new AuthenticationError('You need to be logged in!');
     }
   },
 };

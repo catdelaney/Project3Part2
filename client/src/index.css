@@ -356,9 +356,15 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Lucida Console", "Courier New", "monospace";
+  font-family: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
+  font-weight: normal;
   font-size: 16px;
   color: #1a1a1a;
+  background-image: url(assets/cityscape.jpg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  
 }
 
 h1,
@@ -367,7 +373,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
+font-weight: normal;
   margin: 0 0 0.5rem;
   line-height: 1.25;
 }
@@ -382,6 +389,7 @@ h2 {
 
 h3 {
   font-size: 1.75rem;
+  color:  white;
 }
 
 h4 {
@@ -459,6 +467,7 @@ a:hover {
 /* Margin - all sides */
 .m-0 {
   margin: 0 !important;
+  font-weight: bold;
 }
 
 .m-1 {
@@ -977,12 +986,13 @@ a:hover {
   margin: 0;
   text-decoration: none;
   font-size: 1rem;
-  border-radius: 0.3rem;
+  border-radius: 1rem;
   border: 1px solid transparent;
   outline: none;
   color: #1a1a1a;
   background-color: #aeaeae;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  font-weight: bold;
 }
 
 .btn:hover {
@@ -1028,17 +1038,17 @@ a:hover {
 }
 
 .btn.btn-info {
-  background-color: #1bbc9b;
+  background-color: #000000;
   color: #ffffff;
 }
 
 .btn.btn-info:hover {
-  background-color: #31e1bd;
+  background-color: gray;
 }
 
 .btn.btn-light {
-  background-color: #d9e9e8;
-  color: #1a1a1a;
+  background-color: grey;
+  color: white;
 }
 
 .btn.btn-light:hover {

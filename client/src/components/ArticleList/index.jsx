@@ -20,7 +20,7 @@ const ArticleList = ({ articles, title, showTitle = true, showUsername = true })
 
   const handleFavorite = async (articleId) => {
     try {
-      const { data } = await favoriteArticle({ variables: { articleId } });
+      await favoriteArticle({ variables: { articleId } });
     } catch (e) {
       console.error(e);
     }

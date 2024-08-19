@@ -14,12 +14,12 @@ export const QUERY_USER = gql`
         url
       }
       favorites {
-      _id
-      title
-      content
-      author
-      publishedAt
-      url
+        _id
+        title
+        content
+        author
+        publishedAt
+        url
       } 
     }
   }
