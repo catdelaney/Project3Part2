@@ -29,7 +29,7 @@ const resolvers = {
               author: apiArticle.author,
               publishedAt: apiArticle.publishedAt,
               content: apiArticle.content || '',
-              url: apiArticle.url,
+              url: apiArticle.url || ''
             });
             
             const savedArticle = await newArticle.save();
@@ -79,12 +79,13 @@ const resolvers = {
 
       return { token, user };
     },
-    addArticle: async (parent, { title, content, author, publishedAt }) => {
+    addArticle: async (parent, { title, content, author, publishedAt, url }) => {
       const newArticle = new Article({ 
         title,
         author,
         publishedAt,
-        content: content || ''
+        content: content || '',
+        url: url || ''
       });
       return await newArticle.save();
     },

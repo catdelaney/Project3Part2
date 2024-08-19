@@ -32,7 +32,7 @@ const typeDefs = `
   type Mutation {
     addUser(author: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addArticle(title: String!, content: String!, author: String, publishedAt: String): Article
+    addArticle(title: String!, content: String!, author: String, publishedAt: String, url:String): Article
     removeArticle(articleId: ID!): Article
   }
 `;
