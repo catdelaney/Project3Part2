@@ -36,3 +36,18 @@ export const ADD_ARTICLE = gql`
     }
   }
 `;
+
+export const FAVORITE_ARTICLE = gql`
+  mutation favoriteArticle($articleId: ID!) {
+    favoriteArticle(articleId: $articleId) {
+      _id
+      favorites {
+        _id
+        title
+        author
+        content
+        url
+      }
+    }
+  }
+`;

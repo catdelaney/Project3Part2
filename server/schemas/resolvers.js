@@ -9,7 +9,7 @@ const resolvers = {
       return await User.find({});
     },
     user: async (parent, { author }) => {
-      return await User.findOne({ author });
+      return await User.findOne({ author }).populate('favorites');
     },
 
     fetchArticles: async () => {
@@ -24,19 +24,19 @@ const resolvers = {
           const { articles: apiArticles } = await response.json();
           if (apiArticles.length > 0) {
             const fetchedArticles = await Promise.all(apiArticles.map(async (apiArticle) => {
-            const newArticle = new Article({
-              title: apiArticle.title,
-              author: apiArticle.author,
-              publishedAt: apiArticle.publishedAt,
-              content: apiArticle.content || '',
-              url: apiArticle.url || ''
-            });
-            
-            const savedArticle = await newArticle.save();
-            console.log('Article saved:', savedArticle);
-            return savedArticle;
-          }));
-          return fetchedArticles;
+              const newArticle = new Article({
+                title: apiArticle.title,
+                author: apiArticle.author,
+                publishedAt: apiArticle.publishedAt,
+                content: apiArticle.content || '',
+                url: apiArticle.url || ''
+              });
+              
+              const savedArticle = await newArticle.save();
+              console.log('Article saved:', savedArticle);
+              return savedArticle;
+            }));
+            return fetchedArticles;
           } else {
             throw new Error('No articles found');
           }
@@ -45,8 +45,8 @@ const resolvers = {
           throw new Error('Failed to fetch articles');
         }
       }
-       return articles;
-      },
+      return articles;
+    },
 
     me: async (parent, args, context) => {
       if (context.user) {
@@ -89,16 +89,22 @@ const resolvers = {
       });
       return await newArticle.save();
     },
-    favoriteArticle: async (parent, { userId, articleId }) => {
-      const user = await User.findById(userId);
+    favoriteArticle: async (parent, { articleId }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in');
+      }
+
+      const user = await User.findByIdAndUpdate(
+        context.user._id,
+        { $addToSet: { favorites: articleId } },
+        { new: true }
+      ).populate('favorites'); 
+
       if (!user) {
         throw new Error('User not found');
       }
-      if (!user.favorites.includes(articleId)) {
-        user.favorites.push(articleId);
-        await user.save();
-      }
-      return user.populate('favorites');
+
+      return user;
     },
   },
   User: {

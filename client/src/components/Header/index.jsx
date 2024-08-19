@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import './Header.css';
 import Auth from '../../utils/auth';
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Header = ({ onDateChange }) => { // Receive the callback as a prop
