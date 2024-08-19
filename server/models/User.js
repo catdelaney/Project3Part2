@@ -19,6 +19,11 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
+  favorites: [
+    { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: 'Article' }
+  ],
   articles: [
     {
       type: Schema.Types.ObjectId,

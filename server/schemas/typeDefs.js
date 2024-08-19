@@ -27,6 +27,7 @@ const typeDefs = `
     fetchArticles: [Article]
     article(articleId: ID!): Article
     me: User
+    userFavorites(userId: ID!): [Article!]!
   }
 
   type Mutation {
@@ -34,6 +35,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addArticle(title: String!, content: String!, author: String, publishedAt: String, url:String): Article
     removeArticle(articleId: ID!): Article
+    favoriteArticle(userId: ID!, articleId: ID!): User
   }
 `;
 
