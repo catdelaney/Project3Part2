@@ -36,7 +36,7 @@ const ArticleList = ({ articles, title, showTitle = true, showUsername = true })
           </div>
           <Link
             className="btn btn-primary btn-block btn-squared"
-            href={article.externalUrl}
+            href={article.url}
             target="_blank"
             rel="noopener noreferrer">
             Read Full Article
