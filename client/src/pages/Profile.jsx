@@ -51,6 +51,21 @@ const Profile = () => {
             showUsername={false}
           />
         </div>
+
+        <div className="col-12 col-md-10 mb-5">
+          <h3 className="text-dark">Favorite Articles</h3>
+          {user.favorites && user.favorites.length > 0 ? (
+            <ArticleList
+              articles={user.favorites}
+              title="Your favorite articles..."
+              showTitle={false}
+              showUsername={false}
+            />
+          ) : (
+            <p>You have no favorite articles yet.</p>
+          )}
+        </div>
+
         {!userParam && (
           <div
             className="col-12 col-md-10 mb-3 p-3"

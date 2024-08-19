@@ -5,6 +5,7 @@ const typeDefs = `
     email: String
     password: String
     articles: [Article]!
+    favorites: [Article]
   }
 
   type Article {

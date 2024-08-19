@@ -50,7 +50,7 @@ const resolvers = {
 
     me: async (parent, args, context) => {
       if (context.user) {
-        return await User.findOne({ _id: context.user._id });
+        return await User.findOne({ _id: context.user._id }).populate('favorites');
       }
       throw new AuthenticationError();
     },
@@ -89,6 +89,22 @@ const resolvers = {
       });
       return await newArticle.save();
     },
+    favoriteArticle: async (parent, { userId, articleId }) => {
+      const user = await User.findById(userId);
+      if (!user) {
+        throw new Error('User not found');
+      }
+      if (!user.favorites.includes(articleId)) {
+        user.favorites.push(articleId);
+        await user.save();
+      }
+      return user.populate('favorites');
+    },
+  },
+  User: {
+    favorites: async (user) => {
+      return await Article.find({ _id: { $in: user.favorites } });
+    }
   },
 };
 

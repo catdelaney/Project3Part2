@@ -21,7 +21,7 @@ const userSchema = new Schema({
   },
   favorites: [
     { 
-      type: mongoose.Schema.Types.ObjectId, 
+      type: Schema.Types.ObjectId, 
       ref: 'Article' }
   ],
   articles: [
