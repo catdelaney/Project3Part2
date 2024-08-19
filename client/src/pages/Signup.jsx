@@ -53,7 +53,7 @@ const Signup = () => {
               <form onSubmit={handleFormSubmit}>
                 <input
                   className="form-input"
-                  placeholder="Your author"
+                  placeholder="Your name"
                   name="author"
                   type="text"
                   value={formState.author}
