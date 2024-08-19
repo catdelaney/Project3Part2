@@ -13,6 +13,14 @@ export const QUERY_USER = gql`
         publishedAt
         url
       }
+      favorites {
+      _id
+      title
+      content
+      author
+      publishedAt
+      url
+      } 
     }
   }
 `;
@@ -57,6 +65,14 @@ export const QUERY_ME = gql`
         publishedAt
         url
       }
+      favorites {
+        _id
+        title
+        content
+        author
+        publishedAt
+        url
+      } 
     }
   }
 `;
