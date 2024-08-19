@@ -4,7 +4,10 @@
 WORLDWIDENEWS is a news website that collects and displays news articles from various sources, for easy access.
 
 ## Screenshots
-
+![HomePage](client/src/assets/WWN%201%20-%20HomePage.png)
+![LoginPage](client/src/assets/WWN%202%20-%20Login.png)
+![SignUpPage](client/src/assets/WWN%202%20-%20SignUp.png)
+![ProfilePage](client/src/assets/WWN%202%20-%20Profile.png)
 
 ## User Story
 ```
@@ -57,8 +60,8 @@ WORLDWIDENEWS is a news website that collects and displays news articles from va
 #### - University of Toronto, UTOR Fullstack Bootcamp
  
 
- ## License
- [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
- Mozilla
- This project is licensed under the MIT License - see the LICENSE file for details.
+Mozilla
+This project is licensed under the MIT License - see the LICENSE file for details.

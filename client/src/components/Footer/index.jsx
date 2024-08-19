@@ -16,7 +16,7 @@ const Footer = () => {
           </button>
         )}
         <h4>
-<p>&copy; 2024 WWN. All Rights Reserved.</p>
+<p class='text-white'>&copy; 2024 WWN. All Rights Reserved.</p>
         </h4>
       </div>
     </footer>

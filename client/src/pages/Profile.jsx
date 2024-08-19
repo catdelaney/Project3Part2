@@ -37,8 +37,8 @@ const Profile = () => {
   return (
     <div>
       <div className="flex-row justify-center mb-3">
-        <div className="col-12 col-md-10 mb-5">
-          <h3 className="text-dark">Favorite Articles</h3>
+        <div className="col-12 col-md-10 mb-5 text-white">
+          <h3 className="text-white">Favorite Articles</h3>
           {user.favorites && user.favorites.length > 0 ? (
             <ArticleList
               articles={user.favorites}
