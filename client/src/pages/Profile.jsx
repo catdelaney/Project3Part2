@@ -15,19 +15,19 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
-  // if (
-  //   Auth.loggedIn() && 
-  //   /* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's author, and compare it to the userParam variable */
-  //   Auth.getProfile().authenticatedPerson.author === userParam
-  // ) {
-  //   return <Navigate to="/me" />;
-  // }
+  if (
+    Auth.loggedIn() && 
+    /* Run the getProfile() method to get access to the unencrypted token value in order to retrieve the user's author, and compare it to the userParam variable */
+    Auth.getProfile().authenticatedPerson.author === userParam
+  ) {
+    return <Navigate to="/me" />;
+  }
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!Auth.loggedIn() || !user?.author) {
+  if (!user?.author) {
     return (
       <h4>
         You need to be logged in to see this. Use the navigation links above to
@@ -36,10 +36,6 @@ const Profile = () => {
     );
   }
 
-  if (!userParam && Auth.getProfile().data.author === user.author) {
-    return <Navigate to="/me" />;
-  }
-  
   return (
     <div>
       <div className="flex-row justify-center mb-3">
